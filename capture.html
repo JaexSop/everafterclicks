@@ -184,7 +184,7 @@
             capturedImages = [];
 
             function captureNextPhoto() {
-                if (count >= 3) return;
+                if (count >= 2) return;
                 let timer = 3;
                 countdownText.textContent = timer;
                 const countdownInterval = setInterval(() => {
@@ -194,7 +194,7 @@
                         clearInterval(countdownInterval);
                         countdownText.textContent = "";
                         count++;
-                        progressText.textContent = `${count}/2`;
+                        progressText.textContent = `${count}/2`;  // Fixed syntax
                         capturePhoto();
                         if (count < 2) setTimeout(captureNextPhoto, 1000);
                         else {
@@ -239,6 +239,7 @@
 
         startCamera();
     </script>
+
 
 </body>
 
