@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ever After Clicks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(255, 250, 240, 0.78);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #d1b892;
+        }
+
+        body {
+            padding-top: 70px;
+            background: url('images/background.jfif') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.9rem;
+            color: #8B5E3C !important;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            color: #5a4637 !important;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #c49a6c !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background-color: #c49a6c;
+            transition: width 0.3s ease-in-out;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(0.3);
+        }
+
+        .hero-section {
+            text-align: center;
+            color: #5a4637;
+            padding: 100px 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #8B5E3C;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #7a5c44;
+            max-width: 600px;
+            margin: 15px auto;
+            line-height: 1.6;
+        }
+
+        .btn-custom {
+            background-color: rgba(139, 94, 60, 0.8);
+            color: white;
+            font-size: 1.1rem;
+            padding: 12px 28px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-custom:hover {
+            background-color: rgba(196, 154, 108, 0.49);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-section {
+            padding: 60px 20px;
+            /* Keeps the box smaller */
+            text-align: center;
+            background-color: #f8f0e3;
+            margin-top: 50vh;
+            /* Increased from 10vh to 15vh to move it down */
+            margin-bottom: 5vh;
+            /* Adds some spacing below */
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transform: translateY(50px);
+            border-radius: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #8B5E3C;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            color: #7a5c44;
+            max-width: 700px;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+
+        .about-section p.developer {
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: #5a4637;
+            font-style: italic;
+        }
+
+        .btn-custom:active {
+            background-color: #c49a6c !important;
+            transform: scale(0.95);
+            box-shadow: 0 0 20px rgba(139, 94, 60, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                display: none;
+            }
+        }
+
+        .btn-custom {
+            background-color: rgba(139, 94, 60, 0.8);
+            color: white;
+            font-size: 1.1rem;
+            padding: 12px 28px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        /* Hover Effect */
+        .btn-custom:hover {
+            background-color: rgba(196, 154, 108, 0.49);
+            transform: scale(1.05);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Click Effect - Move to Right */
+        .btn-custom.move-right {
+            transform: translateX(100px);
+            /* Move 100px to the right */
+            opacity: 0;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .navbar {
+            transition: top 0.7s ease-in-out;
+        }
+
+        .developer {
+            font-size: 13px;
+            /* Smallest text */
+            font-weight: lighter;
+            /* Thin text */
+            font-family: "Dancing Script", cursive;
+            /* Cursive font */
+            color: #888;
+            /* Light gray */
+            position: fixed;
+            /* Stay at the bottom */
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            letter-spacing: -0.5px;
+            /* Make text tighter */
+            white-space: nowrap;
+            /* Prevent line breaks */
+            opacity: 1;
+            /* Fully visible */
+            transition: opacity 0.5s ease-in-out;
+            /* Smooth fade effect */
+        }
+    </style>
+</head>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@300&display=swap" rel="stylesheet">
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ever After Clicks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" id="about-link">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="capture.html">Capture</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center">
+        <div class="hero-section">
+            <h1>Ever After Clicks</h1>
+            <p>Where every captured moment turns into a timeless memory.</p>
+            <a href="capture.html" id="captureBtn" class="btn btn-custom">Start Capturing</a>
+        </div>
+        <p class="developer">Developed by: Johannes J</p>
+    </div>
+
+    <div class="container">
+        <div id="about-section" class="about-section">
+            <h2>Frequently Asked Questions</h2>
+            <p><strong>Can I use it on mobile?</strong> Yes, but it works better on desktops or laptops.</p>
+            <p><strong>Do you store our data?</strong> No, it stays on your device and is not saved to a database.</p>
+
+            <h2>How to Use?</h2>
+            <p>1. The default number of shots is three.</p>
+            <p>2. Capture your photos using the built-in camera.</p>
+            <p>3. Select a frame for your final output.</p>
+            <p>4. Download and save your photobooth-style image.</p>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const aboutSection = document.getElementById("about-section");
+
+            function handleScroll() {
+                const sectionPosition = aboutSection.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (sectionPosition < screenPosition) {
+                    aboutSection.classList.add("show");
+                }
+            }
+
+            document.getElementById("about-link").addEventListener("click", function (event) {
+                event.preventDefault();
+                aboutSection.scrollIntoView({ behavior: "smooth", block: "center" });
+            });
+
+            window.addEventListener("scroll", handleScroll);
+            handleScroll();
+        });
+
+        document.getElementById("captureBtn").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent instant navigation
+            let btn = this;
+
+            // Add class for slide effect
+            btn.classList.add("move-right");
+
+            // Redirect after animation ends
+            setTimeout(() => {
+                window.location.href = btn.getAttribute("href");
+            }, 500); // Matches CSS transition duration
+        });
+
+        let lastScrollTop = 0;
+        const navbar = document.querySelector(".navbar");
+
+        window.addEventListener("scroll", function () {
+            let currentScroll = window.scrollY;
+
+            if (currentScroll > lastScrollTop) {
+                navbar.style.top = "-70px"; // Hide navbar
+            } else {
+                navbar.style.top = "0"; // Show navbar
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        window.addEventListener("scroll", function () {
+            let developerText = document.querySelector(".developer");
+            let scrollPosition = window.scrollY;
+
+            if (scrollPosition > 100) { // Adjust value if needed
+                developerText.style.opacity = "0"; // Fade out
+            } else {
+                developerText.style.opacity = "1"; // Fade in
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>
