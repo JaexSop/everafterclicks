@@ -194,9 +194,9 @@
                         clearInterval(countdownInterval);
                         countdownText.textContent = "";
                         count++;
-                        progressText.textContent = `${count}/3`;
+                        progressText.textContent = `${count}/2`;
                         capturePhoto();
-                        if (count < 3) setTimeout(captureNextPhoto, 1000);
+                        if (count < 2) setTimeout(captureNextPhoto, 1000);
                         else {
                             showReviewDialog();
                             captureButton.disabled = false;
@@ -214,7 +214,7 @@
                 confirmButtonText: "Pick Frames",
                 html: capturedImages.map((img, index) =>
                     `<div class='d-inline-block text-center m-2'>
-                        <p class='fw-bold mb-1'>${["First Shot", "Second Shot", "Third Shot"][index]}</p>
+                        <p class='fw-bold mb-1'>${["First Shot", "Second Shot"][index]}</p>
                         <img src="${img}" width="100" class='rounded' onclick="showFullImage('${img}')">
                     </div>`).join(''),
                 cancelButtonText: "Capture Again"
@@ -223,7 +223,7 @@
                     localStorage.setItem("capturedImages", JSON.stringify(capturedImages));
                     window.location.href = "frameSelection.html";
                 } else {
-                    document.getElementById("progress").textContent = "0/3";
+                    document.getElementById("progress").textContent = "0/2";
                 }
             });
         }
